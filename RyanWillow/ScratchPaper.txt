@@ -1,0 +1,28 @@
+
+def p_def_function(p):
+    'stmt : DEF SIMB LPAREN atoms RPAREN LCURLY exp return RCURLY SEMI'
+    if DEBUG: print "Creating a function"
+    VariableMap[p[2]] = p[8]
+    p[0] = p[8]
+
+def p_call_function(p):
+    'stmt : SIMB LPAREN atoms RPAREN SEMI'
+    if DEBUG: print "calling a function"
+    try:
+        VariableMap[SIMB]
+    except KeyError:
+        pass
+    p[0] =
+
+def p_return(p):
+    'return : RETURN atoms SEMI'
+    if DEBUG: print "returning"
+    p[0] = p[2]
+
+
+
+
+def p_stmt_return(p):
+    'stmt : return'
+    if DEBUG: print "Evaling return to stmt"
+    p[0] = p[1]

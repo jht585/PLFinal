@@ -1,0 +1,2009 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NE_OP
+    LN
+    ARRAY
+    PRCNT
+    CLASS
+    DO
+    STR
+    FLOOR
+    DICT
+    LOG
+    BANG
+    LE_OP
+    FOR
+    LT_OP
+    RBRACE
+    CEILING
+    VOID
+    LBRACE
+    FLOAT
+    SET
+    ROUND
+    INT
+    RETURN
+    SQUOTE
+    COMMA
+    GT_OP
+    GE_OP
+    NIL
+    BOOL
+    WHILE
+    EXP
+
+Grammar
+
+Rule 0     S' -> stmts
+Rule 1     stmts -> stmt
+Rule 2     stmts -> stmts stmt
+Rule 3     atoms -> atom
+Rule 4     atoms -> atom atoms
+Rule 5     atom -> simb
+Rule 6     stmt -> declaration
+Rule 7     atom -> NUM
+Rule 8     atom -> NUM DOT NUM
+Rule 9     atom -> TEXT
+Rule 10    atom -> FALSE
+Rule 11    atom -> TRUE
+Rule 12    atom -> <empty>
+Rule 13    simb -> SIMB
+Rule 14    mathop -> PLUS
+Rule 15    mathop -> MINUS
+Rule 16    mathop -> MULT
+Rule 17    mathop -> DIV
+Rule 18    declaration -> VAR simb EQUALS atoms SEMI
+Rule 19    declaration -> VAR simb SEMI
+Rule 20    stmt -> simb EQUALS atoms SEMI
+Rule 21    stmt -> DIV DIV atoms
+Rule 22    stmt -> DIV DIV stmts
+Rule 23    stmt -> PRINT atoms SEMI
+Rule 24    stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY
+Rule 25    stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+Rule 26    stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+Rule 27    stmt -> SIMB LPAREN RPAREN SEMI
+Rule 28    exp -> atoms EQ_OP atoms
+Rule 29    stmt -> atom mathop atom SEMI
+Rule 30    stmt -> simb EQUALS atom mathop atom SEMI
+
+Terminals, with rules where they appear
+
+ARRAY                : 
+BANG                 : 
+BOOL                 : 
+CEILING              : 
+CLASS                : 
+COMMA                : 
+DEF                  : 26
+DICT                 : 
+DIV                  : 17 21 21 22 22
+DO                   : 
+DOT                  : 8
+ELSE                 : 25
+EQUALS               : 18 20 30
+EQ_OP                : 28
+EXP                  : 
+FALSE                : 10
+FLOAT                : 
+FLOOR                : 
+FOR                  : 
+GE_OP                : 
+GT_OP                : 
+IF                   : 24 25
+INT                  : 
+LBRACE               : 
+LCURLY               : 24 25 25 26
+LE_OP                : 
+LN                   : 
+LOG                  : 
+LPAREN               : 24 25 26 27
+LT_OP                : 
+MINUS                : 15
+MULT                 : 16
+NE_OP                : 
+NIL                  : 
+NUM                  : 7 8 8
+PLUS                 : 14
+PRCNT                : 
+PRINT                : 23
+RBRACE               : 
+RCURLY               : 24 25 25 26
+RETURN               : 
+ROUND                : 
+RPAREN               : 24 25 26 27
+SEMI                 : 18 19 20 23 27 29 30
+SET                  : 
+SIMB                 : 13 26 27
+SQUOTE               : 
+STR                  : 
+TEXT                 : 9
+TRUE                 : 11
+VAR                  : 18 19
+VOID                 : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+atom                 : 3 4 29 29 30 30
+atoms                : 4 18 20 21 23 28 28
+declaration          : 6
+exp                  : 24 25
+mathop               : 29 30
+simb                 : 5 18 19 20 30
+stmt                 : 1 2
+stmts                : 2 22 24 25 25 26 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . stmts
+    (1) stmts -> . stmt
+    (2) stmts -> . stmts stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    stmts                          shift and go to state 7
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 15
+    simb                           shift and go to state 6
+
+state 1
+
+    (23) stmt -> PRINT . atoms SEMI
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SEMI            reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 17
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 2
+
+    (18) declaration -> VAR . simb EQUALS atoms SEMI
+    (19) declaration -> VAR . simb SEMI
+    (13) simb -> . SIMB
+
+    SIMB            shift and go to state 16
+
+    simb                           shift and go to state 20
+
+state 3
+
+    (9) atom -> TEXT .
+
+    NUM             reduce using rule 9 (atom -> TEXT .)
+    TEXT            reduce using rule 9 (atom -> TEXT .)
+    FALSE           reduce using rule 9 (atom -> TEXT .)
+    TRUE            reduce using rule 9 (atom -> TEXT .)
+    SIMB            reduce using rule 9 (atom -> TEXT .)
+    DIV             reduce using rule 9 (atom -> TEXT .)
+    PRINT           reduce using rule 9 (atom -> TEXT .)
+    IF              reduce using rule 9 (atom -> TEXT .)
+    DEF             reduce using rule 9 (atom -> TEXT .)
+    VAR             reduce using rule 9 (atom -> TEXT .)
+    $end            reduce using rule 9 (atom -> TEXT .)
+    PLUS            reduce using rule 9 (atom -> TEXT .)
+    MINUS           reduce using rule 9 (atom -> TEXT .)
+    MULT            reduce using rule 9 (atom -> TEXT .)
+    RCURLY          reduce using rule 9 (atom -> TEXT .)
+    RPAREN          reduce using rule 9 (atom -> TEXT .)
+    SEMI            reduce using rule 9 (atom -> TEXT .)
+    EQ_OP           reduce using rule 9 (atom -> TEXT .)
+
+
+state 4
+
+    (27) stmt -> SIMB . LPAREN RPAREN SEMI
+    (13) simb -> SIMB .
+
+    LPAREN          shift and go to state 21
+    EQUALS          reduce using rule 13 (simb -> SIMB .)
+    PLUS            reduce using rule 13 (simb -> SIMB .)
+    MINUS           reduce using rule 13 (simb -> SIMB .)
+    MULT            reduce using rule 13 (simb -> SIMB .)
+    DIV             reduce using rule 13 (simb -> SIMB .)
+    NUM             reduce using rule 13 (simb -> SIMB .)
+    TEXT            reduce using rule 13 (simb -> SIMB .)
+    FALSE           reduce using rule 13 (simb -> SIMB .)
+    TRUE            reduce using rule 13 (simb -> SIMB .)
+    SIMB            reduce using rule 13 (simb -> SIMB .)
+    PRINT           reduce using rule 13 (simb -> SIMB .)
+    IF              reduce using rule 13 (simb -> SIMB .)
+    DEF             reduce using rule 13 (simb -> SIMB .)
+    VAR             reduce using rule 13 (simb -> SIMB .)
+    $end            reduce using rule 13 (simb -> SIMB .)
+    RCURLY          reduce using rule 13 (simb -> SIMB .)
+
+
+state 5
+
+    (24) stmt -> IF . LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> IF . LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+
+    LPAREN          shift and go to state 22
+
+
+state 6
+
+    (20) stmt -> simb . EQUALS atoms SEMI
+    (30) stmt -> simb . EQUALS atom mathop atom SEMI
+    (5) atom -> simb .
+
+    EQUALS          shift and go to state 23
+    PLUS            reduce using rule 5 (atom -> simb .)
+    MINUS           reduce using rule 5 (atom -> simb .)
+    MULT            reduce using rule 5 (atom -> simb .)
+    DIV             reduce using rule 5 (atom -> simb .)
+
+
+state 7
+
+    (0) S' -> stmts .
+    (2) stmts -> stmts . stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 24
+    simb                           shift and go to state 6
+
+state 8
+
+    (26) stmt -> DEF . SIMB LPAREN RPAREN LCURLY stmts RCURLY
+
+    SIMB            shift and go to state 25
+
+
+state 9
+
+    (7) atom -> NUM .
+    (8) atom -> NUM . DOT NUM
+
+    NUM             reduce using rule 7 (atom -> NUM .)
+    TEXT            reduce using rule 7 (atom -> NUM .)
+    FALSE           reduce using rule 7 (atom -> NUM .)
+    TRUE            reduce using rule 7 (atom -> NUM .)
+    SIMB            reduce using rule 7 (atom -> NUM .)
+    DIV             reduce using rule 7 (atom -> NUM .)
+    PRINT           reduce using rule 7 (atom -> NUM .)
+    IF              reduce using rule 7 (atom -> NUM .)
+    DEF             reduce using rule 7 (atom -> NUM .)
+    VAR             reduce using rule 7 (atom -> NUM .)
+    $end            reduce using rule 7 (atom -> NUM .)
+    PLUS            reduce using rule 7 (atom -> NUM .)
+    MINUS           reduce using rule 7 (atom -> NUM .)
+    MULT            reduce using rule 7 (atom -> NUM .)
+    RCURLY          reduce using rule 7 (atom -> NUM .)
+    RPAREN          reduce using rule 7 (atom -> NUM .)
+    SEMI            reduce using rule 7 (atom -> NUM .)
+    EQ_OP           reduce using rule 7 (atom -> NUM .)
+    DOT             shift and go to state 26
+
+
+state 10
+
+    (11) atom -> TRUE .
+
+    NUM             reduce using rule 11 (atom -> TRUE .)
+    TEXT            reduce using rule 11 (atom -> TRUE .)
+    FALSE           reduce using rule 11 (atom -> TRUE .)
+    TRUE            reduce using rule 11 (atom -> TRUE .)
+    SIMB            reduce using rule 11 (atom -> TRUE .)
+    DIV             reduce using rule 11 (atom -> TRUE .)
+    PRINT           reduce using rule 11 (atom -> TRUE .)
+    IF              reduce using rule 11 (atom -> TRUE .)
+    DEF             reduce using rule 11 (atom -> TRUE .)
+    VAR             reduce using rule 11 (atom -> TRUE .)
+    $end            reduce using rule 11 (atom -> TRUE .)
+    PLUS            reduce using rule 11 (atom -> TRUE .)
+    MINUS           reduce using rule 11 (atom -> TRUE .)
+    MULT            reduce using rule 11 (atom -> TRUE .)
+    RCURLY          reduce using rule 11 (atom -> TRUE .)
+    RPAREN          reduce using rule 11 (atom -> TRUE .)
+    SEMI            reduce using rule 11 (atom -> TRUE .)
+    EQ_OP           reduce using rule 11 (atom -> TRUE .)
+
+
+state 11
+
+    (6) stmt -> declaration .
+
+    DIV             reduce using rule 6 (stmt -> declaration .)
+    PRINT           reduce using rule 6 (stmt -> declaration .)
+    IF              reduce using rule 6 (stmt -> declaration .)
+    DEF             reduce using rule 6 (stmt -> declaration .)
+    SIMB            reduce using rule 6 (stmt -> declaration .)
+    VAR             reduce using rule 6 (stmt -> declaration .)
+    NUM             reduce using rule 6 (stmt -> declaration .)
+    TEXT            reduce using rule 6 (stmt -> declaration .)
+    FALSE           reduce using rule 6 (stmt -> declaration .)
+    TRUE            reduce using rule 6 (stmt -> declaration .)
+    $end            reduce using rule 6 (stmt -> declaration .)
+    PLUS            reduce using rule 6 (stmt -> declaration .)
+    MINUS           reduce using rule 6 (stmt -> declaration .)
+    MULT            reduce using rule 6 (stmt -> declaration .)
+    RCURLY          reduce using rule 6 (stmt -> declaration .)
+
+
+state 12
+
+    (21) stmt -> DIV . DIV atoms
+    (22) stmt -> DIV . DIV stmts
+
+    DIV             shift and go to state 27
+
+
+state 13
+
+    (10) atom -> FALSE .
+
+    NUM             reduce using rule 10 (atom -> FALSE .)
+    TEXT            reduce using rule 10 (atom -> FALSE .)
+    FALSE           reduce using rule 10 (atom -> FALSE .)
+    TRUE            reduce using rule 10 (atom -> FALSE .)
+    SIMB            reduce using rule 10 (atom -> FALSE .)
+    DIV             reduce using rule 10 (atom -> FALSE .)
+    PRINT           reduce using rule 10 (atom -> FALSE .)
+    IF              reduce using rule 10 (atom -> FALSE .)
+    DEF             reduce using rule 10 (atom -> FALSE .)
+    VAR             reduce using rule 10 (atom -> FALSE .)
+    $end            reduce using rule 10 (atom -> FALSE .)
+    PLUS            reduce using rule 10 (atom -> FALSE .)
+    MINUS           reduce using rule 10 (atom -> FALSE .)
+    MULT            reduce using rule 10 (atom -> FALSE .)
+    RCURLY          reduce using rule 10 (atom -> FALSE .)
+    RPAREN          reduce using rule 10 (atom -> FALSE .)
+    SEMI            reduce using rule 10 (atom -> FALSE .)
+    EQ_OP           reduce using rule 10 (atom -> FALSE .)
+
+
+state 14
+
+    (29) stmt -> atom . mathop atom SEMI
+    (14) mathop -> . PLUS
+    (15) mathop -> . MINUS
+    (16) mathop -> . MULT
+    (17) mathop -> . DIV
+
+    PLUS            shift and go to state 32
+    MINUS           shift and go to state 29
+    MULT            shift and go to state 31
+    DIV             shift and go to state 30
+
+    mathop                         shift and go to state 28
+
+state 15
+
+    (1) stmts -> stmt .
+
+    DIV             reduce using rule 1 (stmts -> stmt .)
+    PRINT           reduce using rule 1 (stmts -> stmt .)
+    IF              reduce using rule 1 (stmts -> stmt .)
+    DEF             reduce using rule 1 (stmts -> stmt .)
+    SIMB            reduce using rule 1 (stmts -> stmt .)
+    VAR             reduce using rule 1 (stmts -> stmt .)
+    NUM             reduce using rule 1 (stmts -> stmt .)
+    TEXT            reduce using rule 1 (stmts -> stmt .)
+    FALSE           reduce using rule 1 (stmts -> stmt .)
+    TRUE            reduce using rule 1 (stmts -> stmt .)
+    $end            reduce using rule 1 (stmts -> stmt .)
+    PLUS            reduce using rule 1 (stmts -> stmt .)
+    MINUS           reduce using rule 1 (stmts -> stmt .)
+    MULT            reduce using rule 1 (stmts -> stmt .)
+    RCURLY          reduce using rule 1 (stmts -> stmt .)
+
+
+state 16
+
+    (13) simb -> SIMB .
+
+    NUM             reduce using rule 13 (simb -> SIMB .)
+    TEXT            reduce using rule 13 (simb -> SIMB .)
+    FALSE           reduce using rule 13 (simb -> SIMB .)
+    TRUE            reduce using rule 13 (simb -> SIMB .)
+    SIMB            reduce using rule 13 (simb -> SIMB .)
+    SEMI            reduce using rule 13 (simb -> SIMB .)
+    PLUS            reduce using rule 13 (simb -> SIMB .)
+    MINUS           reduce using rule 13 (simb -> SIMB .)
+    MULT            reduce using rule 13 (simb -> SIMB .)
+    DIV             reduce using rule 13 (simb -> SIMB .)
+    EQ_OP           reduce using rule 13 (simb -> SIMB .)
+    PRINT           reduce using rule 13 (simb -> SIMB .)
+    IF              reduce using rule 13 (simb -> SIMB .)
+    DEF             reduce using rule 13 (simb -> SIMB .)
+    VAR             reduce using rule 13 (simb -> SIMB .)
+    $end            reduce using rule 13 (simb -> SIMB .)
+    RCURLY          reduce using rule 13 (simb -> SIMB .)
+    RPAREN          reduce using rule 13 (simb -> SIMB .)
+    EQUALS          reduce using rule 13 (simb -> SIMB .)
+
+
+state 17
+
+    (23) stmt -> PRINT atoms . SEMI
+
+    SEMI            shift and go to state 33
+
+
+state 18
+
+    (3) atoms -> atom .
+    (4) atoms -> atom . atoms
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! reduce/reduce conflict for SIMB resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for SEMI resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for EQ_OP resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for DIV resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for PRINT resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for IF resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for DEF resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for VAR resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for $end resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for PLUS resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for MINUS resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for MULT resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for RCURLY resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 3 (atoms -> atom .)
+  ! shift/reduce conflict for SIMB resolved as shift
+    EQ_OP           reduce using rule 3 (atoms -> atom .)
+    SEMI            reduce using rule 3 (atoms -> atom .)
+    DIV             reduce using rule 3 (atoms -> atom .)
+    PRINT           reduce using rule 3 (atoms -> atom .)
+    IF              reduce using rule 3 (atoms -> atom .)
+    DEF             reduce using rule 3 (atoms -> atom .)
+    VAR             reduce using rule 3 (atoms -> atom .)
+    $end            reduce using rule 3 (atoms -> atom .)
+    PLUS            reduce using rule 3 (atoms -> atom .)
+    MINUS           reduce using rule 3 (atoms -> atom .)
+    MULT            reduce using rule 3 (atoms -> atom .)
+    RCURLY          reduce using rule 3 (atoms -> atom .)
+    RPAREN          reduce using rule 3 (atoms -> atom .)
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SIMB            shift and go to state 16
+
+  ! SIMB            [ reduce using rule 3 (atoms -> atom .) ]
+  ! NUM             [ reduce using rule 3 (atoms -> atom .) ]
+  ! TEXT            [ reduce using rule 3 (atoms -> atom .) ]
+  ! FALSE           [ reduce using rule 3 (atoms -> atom .) ]
+  ! TRUE            [ reduce using rule 3 (atoms -> atom .) ]
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+  ! SEMI            [ reduce using rule 12 (atom -> .) ]
+  ! EQ_OP           [ reduce using rule 12 (atom -> .) ]
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+  ! PRINT           [ reduce using rule 12 (atom -> .) ]
+  ! IF              [ reduce using rule 12 (atom -> .) ]
+  ! DEF             [ reduce using rule 12 (atom -> .) ]
+  ! VAR             [ reduce using rule 12 (atom -> .) ]
+  ! $end            [ reduce using rule 12 (atom -> .) ]
+  ! PLUS            [ reduce using rule 12 (atom -> .) ]
+  ! MINUS           [ reduce using rule 12 (atom -> .) ]
+  ! MULT            [ reduce using rule 12 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 12 (atom -> .) ]
+  ! RPAREN          [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 34
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 19
+
+    (5) atom -> simb .
+
+    NUM             reduce using rule 5 (atom -> simb .)
+    TEXT            reduce using rule 5 (atom -> simb .)
+    FALSE           reduce using rule 5 (atom -> simb .)
+    TRUE            reduce using rule 5 (atom -> simb .)
+    SIMB            reduce using rule 5 (atom -> simb .)
+    DIV             reduce using rule 5 (atom -> simb .)
+    PRINT           reduce using rule 5 (atom -> simb .)
+    IF              reduce using rule 5 (atom -> simb .)
+    DEF             reduce using rule 5 (atom -> simb .)
+    VAR             reduce using rule 5 (atom -> simb .)
+    $end            reduce using rule 5 (atom -> simb .)
+    PLUS            reduce using rule 5 (atom -> simb .)
+    MINUS           reduce using rule 5 (atom -> simb .)
+    MULT            reduce using rule 5 (atom -> simb .)
+    RCURLY          reduce using rule 5 (atom -> simb .)
+    RPAREN          reduce using rule 5 (atom -> simb .)
+    SEMI            reduce using rule 5 (atom -> simb .)
+    EQ_OP           reduce using rule 5 (atom -> simb .)
+
+
+state 20
+
+    (18) declaration -> VAR simb . EQUALS atoms SEMI
+    (19) declaration -> VAR simb . SEMI
+
+    EQUALS          shift and go to state 35
+    SEMI            shift and go to state 36
+
+
+state 21
+
+    (27) stmt -> SIMB LPAREN . RPAREN SEMI
+
+    RPAREN          shift and go to state 37
+
+
+state 22
+
+    (24) stmt -> IF LPAREN . exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> IF LPAREN . exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (28) exp -> . atoms EQ_OP atoms
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    EQ_OP           reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 38
+    exp                            shift and go to state 39
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 23
+
+    (20) stmt -> simb EQUALS . atoms SEMI
+    (30) stmt -> simb EQUALS . atom mathop atom SEMI
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+    DIV             reduce using rule 12 (atom -> .)
+    SEMI            reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 40
+    atom                           shift and go to state 41
+    simb                           shift and go to state 19
+
+state 24
+
+    (2) stmts -> stmts stmt .
+
+    DIV             reduce using rule 2 (stmts -> stmts stmt .)
+    PRINT           reduce using rule 2 (stmts -> stmts stmt .)
+    IF              reduce using rule 2 (stmts -> stmts stmt .)
+    DEF             reduce using rule 2 (stmts -> stmts stmt .)
+    SIMB            reduce using rule 2 (stmts -> stmts stmt .)
+    VAR             reduce using rule 2 (stmts -> stmts stmt .)
+    NUM             reduce using rule 2 (stmts -> stmts stmt .)
+    TEXT            reduce using rule 2 (stmts -> stmts stmt .)
+    FALSE           reduce using rule 2 (stmts -> stmts stmt .)
+    TRUE            reduce using rule 2 (stmts -> stmts stmt .)
+    $end            reduce using rule 2 (stmts -> stmts stmt .)
+    PLUS            reduce using rule 2 (stmts -> stmts stmt .)
+    MINUS           reduce using rule 2 (stmts -> stmts stmt .)
+    MULT            reduce using rule 2 (stmts -> stmts stmt .)
+    RCURLY          reduce using rule 2 (stmts -> stmts stmt .)
+
+
+state 25
+
+    (26) stmt -> DEF SIMB . LPAREN RPAREN LCURLY stmts RCURLY
+
+    LPAREN          shift and go to state 42
+
+
+state 26
+
+    (8) atom -> NUM DOT . NUM
+
+    NUM             shift and go to state 43
+
+
+state 27
+
+    (21) stmt -> DIV DIV . atoms
+    (22) stmt -> DIV DIV . stmts
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (1) stmts -> . stmt
+    (2) stmts -> . stmts stmt
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (13) simb -> . SIMB
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+    $end            reduce using rule 12 (atom -> .)
+    RCURLY          reduce using rule 12 (atom -> .)
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+  ! PRINT           [ reduce using rule 12 (atom -> .) ]
+  ! IF              [ reduce using rule 12 (atom -> .) ]
+  ! DEF             [ reduce using rule 12 (atom -> .) ]
+  ! VAR             [ reduce using rule 12 (atom -> .) ]
+
+    stmts                          shift and go to state 46
+    declaration                    shift and go to state 11
+    atoms                          shift and go to state 44
+    atom                           shift and go to state 47
+    stmt                           shift and go to state 15
+    simb                           shift and go to state 45
+
+state 28
+
+    (29) stmt -> atom mathop . atom SEMI
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SEMI            reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+    atom                           shift and go to state 48
+    simb                           shift and go to state 19
+
+state 29
+
+    (15) mathop -> MINUS .
+
+    NUM             reduce using rule 15 (mathop -> MINUS .)
+    TEXT            reduce using rule 15 (mathop -> MINUS .)
+    FALSE           reduce using rule 15 (mathop -> MINUS .)
+    TRUE            reduce using rule 15 (mathop -> MINUS .)
+    SIMB            reduce using rule 15 (mathop -> MINUS .)
+    SEMI            reduce using rule 15 (mathop -> MINUS .)
+
+
+state 30
+
+    (17) mathop -> DIV .
+
+    NUM             reduce using rule 17 (mathop -> DIV .)
+    TEXT            reduce using rule 17 (mathop -> DIV .)
+    FALSE           reduce using rule 17 (mathop -> DIV .)
+    TRUE            reduce using rule 17 (mathop -> DIV .)
+    SIMB            reduce using rule 17 (mathop -> DIV .)
+    SEMI            reduce using rule 17 (mathop -> DIV .)
+
+
+state 31
+
+    (16) mathop -> MULT .
+
+    NUM             reduce using rule 16 (mathop -> MULT .)
+    TEXT            reduce using rule 16 (mathop -> MULT .)
+    FALSE           reduce using rule 16 (mathop -> MULT .)
+    TRUE            reduce using rule 16 (mathop -> MULT .)
+    SIMB            reduce using rule 16 (mathop -> MULT .)
+    SEMI            reduce using rule 16 (mathop -> MULT .)
+
+
+state 32
+
+    (14) mathop -> PLUS .
+
+    NUM             reduce using rule 14 (mathop -> PLUS .)
+    TEXT            reduce using rule 14 (mathop -> PLUS .)
+    FALSE           reduce using rule 14 (mathop -> PLUS .)
+    TRUE            reduce using rule 14 (mathop -> PLUS .)
+    SIMB            reduce using rule 14 (mathop -> PLUS .)
+    SEMI            reduce using rule 14 (mathop -> PLUS .)
+
+
+state 33
+
+    (23) stmt -> PRINT atoms SEMI .
+
+    DIV             reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    PRINT           reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    IF              reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    DEF             reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    SIMB            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    VAR             reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    NUM             reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    TEXT            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    FALSE           reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    TRUE            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    $end            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    PLUS            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    MINUS           reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    MULT            reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+    RCURLY          reduce using rule 23 (stmt -> PRINT atoms SEMI .)
+
+
+state 34
+
+    (4) atoms -> atom atoms .
+
+    EQ_OP           reduce using rule 4 (atoms -> atom atoms .)
+    SEMI            reduce using rule 4 (atoms -> atom atoms .)
+    DIV             reduce using rule 4 (atoms -> atom atoms .)
+    PRINT           reduce using rule 4 (atoms -> atom atoms .)
+    IF              reduce using rule 4 (atoms -> atom atoms .)
+    DEF             reduce using rule 4 (atoms -> atom atoms .)
+    SIMB            reduce using rule 4 (atoms -> atom atoms .)
+    VAR             reduce using rule 4 (atoms -> atom atoms .)
+    NUM             reduce using rule 4 (atoms -> atom atoms .)
+    TEXT            reduce using rule 4 (atoms -> atom atoms .)
+    FALSE           reduce using rule 4 (atoms -> atom atoms .)
+    TRUE            reduce using rule 4 (atoms -> atom atoms .)
+    $end            reduce using rule 4 (atoms -> atom atoms .)
+    PLUS            reduce using rule 4 (atoms -> atom atoms .)
+    MINUS           reduce using rule 4 (atoms -> atom atoms .)
+    MULT            reduce using rule 4 (atoms -> atom atoms .)
+    RCURLY          reduce using rule 4 (atoms -> atom atoms .)
+    RPAREN          reduce using rule 4 (atoms -> atom atoms .)
+
+
+state 35
+
+    (18) declaration -> VAR simb EQUALS . atoms SEMI
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SEMI            reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 49
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 36
+
+    (19) declaration -> VAR simb SEMI .
+
+    RCURLY          reduce using rule 19 (declaration -> VAR simb SEMI .)
+    DIV             reduce using rule 19 (declaration -> VAR simb SEMI .)
+    PRINT           reduce using rule 19 (declaration -> VAR simb SEMI .)
+    IF              reduce using rule 19 (declaration -> VAR simb SEMI .)
+    DEF             reduce using rule 19 (declaration -> VAR simb SEMI .)
+    SIMB            reduce using rule 19 (declaration -> VAR simb SEMI .)
+    VAR             reduce using rule 19 (declaration -> VAR simb SEMI .)
+    NUM             reduce using rule 19 (declaration -> VAR simb SEMI .)
+    TEXT            reduce using rule 19 (declaration -> VAR simb SEMI .)
+    FALSE           reduce using rule 19 (declaration -> VAR simb SEMI .)
+    TRUE            reduce using rule 19 (declaration -> VAR simb SEMI .)
+    PLUS            reduce using rule 19 (declaration -> VAR simb SEMI .)
+    MINUS           reduce using rule 19 (declaration -> VAR simb SEMI .)
+    MULT            reduce using rule 19 (declaration -> VAR simb SEMI .)
+    $end            reduce using rule 19 (declaration -> VAR simb SEMI .)
+
+
+state 37
+
+    (27) stmt -> SIMB LPAREN RPAREN . SEMI
+
+    SEMI            shift and go to state 50
+
+
+state 38
+
+    (28) exp -> atoms . EQ_OP atoms
+
+    EQ_OP           shift and go to state 51
+
+
+state 39
+
+    (24) stmt -> IF LPAREN exp . RPAREN LCURLY stmts RCURLY
+    (25) stmt -> IF LPAREN exp . RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+
+    RPAREN          shift and go to state 52
+
+
+state 40
+
+    (20) stmt -> simb EQUALS atoms . SEMI
+
+    SEMI            shift and go to state 53
+
+
+state 41
+
+    (30) stmt -> simb EQUALS atom . mathop atom SEMI
+    (3) atoms -> atom .
+    (4) atoms -> atom . atoms
+    (14) mathop -> . PLUS
+    (15) mathop -> . MINUS
+    (16) mathop -> . MULT
+    (17) mathop -> . DIV
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! reduce/reduce conflict for SEMI resolved using rule 3 (atoms -> atom .)
+  ! shift/reduce conflict for SIMB resolved as shift
+    SEMI            reduce using rule 3 (atoms -> atom .)
+    PLUS            shift and go to state 32
+    MINUS           shift and go to state 29
+    MULT            shift and go to state 31
+    DIV             shift and go to state 30
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+  ! SEMI            [ reduce using rule 12 (atom -> .) ]
+
+    mathop                         shift and go to state 54
+    atoms                          shift and go to state 34
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 42
+
+    (26) stmt -> DEF SIMB LPAREN . RPAREN LCURLY stmts RCURLY
+
+    RPAREN          shift and go to state 55
+
+
+state 43
+
+    (8) atom -> NUM DOT NUM .
+
+    NUM             reduce using rule 8 (atom -> NUM DOT NUM .)
+    TEXT            reduce using rule 8 (atom -> NUM DOT NUM .)
+    FALSE           reduce using rule 8 (atom -> NUM DOT NUM .)
+    TRUE            reduce using rule 8 (atom -> NUM DOT NUM .)
+    SIMB            reduce using rule 8 (atom -> NUM DOT NUM .)
+    DIV             reduce using rule 8 (atom -> NUM DOT NUM .)
+    PRINT           reduce using rule 8 (atom -> NUM DOT NUM .)
+    IF              reduce using rule 8 (atom -> NUM DOT NUM .)
+    DEF             reduce using rule 8 (atom -> NUM DOT NUM .)
+    VAR             reduce using rule 8 (atom -> NUM DOT NUM .)
+    $end            reduce using rule 8 (atom -> NUM DOT NUM .)
+    PLUS            reduce using rule 8 (atom -> NUM DOT NUM .)
+    MINUS           reduce using rule 8 (atom -> NUM DOT NUM .)
+    MULT            reduce using rule 8 (atom -> NUM DOT NUM .)
+    RCURLY          reduce using rule 8 (atom -> NUM DOT NUM .)
+    RPAREN          reduce using rule 8 (atom -> NUM DOT NUM .)
+    SEMI            reduce using rule 8 (atom -> NUM DOT NUM .)
+    EQ_OP           reduce using rule 8 (atom -> NUM DOT NUM .)
+
+
+state 44
+
+    (21) stmt -> DIV DIV atoms .
+
+    DIV             reduce using rule 21 (stmt -> DIV DIV atoms .)
+    PRINT           reduce using rule 21 (stmt -> DIV DIV atoms .)
+    IF              reduce using rule 21 (stmt -> DIV DIV atoms .)
+    DEF             reduce using rule 21 (stmt -> DIV DIV atoms .)
+    SIMB            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    VAR             reduce using rule 21 (stmt -> DIV DIV atoms .)
+    NUM             reduce using rule 21 (stmt -> DIV DIV atoms .)
+    TEXT            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    FALSE           reduce using rule 21 (stmt -> DIV DIV atoms .)
+    TRUE            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    $end            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    PLUS            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    MINUS           reduce using rule 21 (stmt -> DIV DIV atoms .)
+    MULT            reduce using rule 21 (stmt -> DIV DIV atoms .)
+    RCURLY          reduce using rule 21 (stmt -> DIV DIV atoms .)
+
+
+state 45
+
+    (5) atom -> simb .
+    (20) stmt -> simb . EQUALS atoms SEMI
+    (30) stmt -> simb . EQUALS atom mathop atom SEMI
+
+    PLUS            reduce using rule 5 (atom -> simb .)
+    MINUS           reduce using rule 5 (atom -> simb .)
+    MULT            reduce using rule 5 (atom -> simb .)
+    DIV             reduce using rule 5 (atom -> simb .)
+    NUM             reduce using rule 5 (atom -> simb .)
+    TEXT            reduce using rule 5 (atom -> simb .)
+    FALSE           reduce using rule 5 (atom -> simb .)
+    TRUE            reduce using rule 5 (atom -> simb .)
+    SIMB            reduce using rule 5 (atom -> simb .)
+    PRINT           reduce using rule 5 (atom -> simb .)
+    IF              reduce using rule 5 (atom -> simb .)
+    DEF             reduce using rule 5 (atom -> simb .)
+    VAR             reduce using rule 5 (atom -> simb .)
+    $end            reduce using rule 5 (atom -> simb .)
+    RCURLY          reduce using rule 5 (atom -> simb .)
+    EQUALS          shift and go to state 23
+
+
+state 46
+
+    (22) stmt -> DIV DIV stmts .
+    (2) stmts -> stmts . stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for PRINT resolved as shift
+  ! shift/reduce conflict for IF resolved as shift
+  ! shift/reduce conflict for DEF resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+  ! shift/reduce conflict for VAR resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! reduce/reduce conflict for PLUS resolved using rule 12 (atom -> .)
+  ! reduce/reduce conflict for MINUS resolved using rule 12 (atom -> .)
+  ! reduce/reduce conflict for MULT resolved using rule 12 (atom -> .)
+  ! shift/reduce conflict for DIV resolved as shift
+    $end            reduce using rule 22 (stmt -> DIV DIV stmts .)
+    RCURLY          reduce using rule 22 (stmt -> DIV DIV stmts .)
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! PRINT           [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! IF              [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! DEF             [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! SIMB            [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! VAR             [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! NUM             [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! TEXT            [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! FALSE           [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! TRUE            [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! PLUS            [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! MINUS           [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! MULT            [ reduce using rule 22 (stmt -> DIV DIV stmts .) ]
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 24
+    simb                           shift and go to state 6
+
+state 47
+
+    (3) atoms -> atom .
+    (4) atoms -> atom . atoms
+    (29) stmt -> atom . mathop atom SEMI
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (14) mathop -> . PLUS
+    (15) mathop -> . MINUS
+    (16) mathop -> . MULT
+    (17) mathop -> . DIV
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! reduce/reduce conflict for SIMB resolved using rule 3 (atoms -> atom .)
+  ! shift/reduce conflict for DIV resolved as shift
+  ! reduce/reduce conflict for PRINT resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for IF resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for DEF resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for VAR resolved using rule 3 (atoms -> atom .)
+  ! reduce/reduce conflict for $end resolved using rule 3 (atoms -> atom .)
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! reduce/reduce conflict for RCURLY resolved using rule 3 (atoms -> atom .)
+  ! shift/reduce conflict for SIMB resolved as shift
+    PRINT           reduce using rule 3 (atoms -> atom .)
+    IF              reduce using rule 3 (atoms -> atom .)
+    DEF             reduce using rule 3 (atoms -> atom .)
+    VAR             reduce using rule 3 (atoms -> atom .)
+    $end            reduce using rule 3 (atoms -> atom .)
+    RCURLY          reduce using rule 3 (atoms -> atom .)
+    PLUS            shift and go to state 32
+    MINUS           shift and go to state 29
+    MULT            shift and go to state 31
+    DIV             shift and go to state 30
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SIMB            shift and go to state 16
+
+  ! DIV             [ reduce using rule 3 (atoms -> atom .) ]
+  ! SIMB            [ reduce using rule 3 (atoms -> atom .) ]
+  ! NUM             [ reduce using rule 3 (atoms -> atom .) ]
+  ! TEXT            [ reduce using rule 3 (atoms -> atom .) ]
+  ! FALSE           [ reduce using rule 3 (atoms -> atom .) ]
+  ! TRUE            [ reduce using rule 3 (atoms -> atom .) ]
+  ! PLUS            [ reduce using rule 3 (atoms -> atom .) ]
+  ! MINUS           [ reduce using rule 3 (atoms -> atom .) ]
+  ! MULT            [ reduce using rule 3 (atoms -> atom .) ]
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+  ! PRINT           [ reduce using rule 12 (atom -> .) ]
+  ! IF              [ reduce using rule 12 (atom -> .) ]
+  ! DEF             [ reduce using rule 12 (atom -> .) ]
+  ! VAR             [ reduce using rule 12 (atom -> .) ]
+  ! $end            [ reduce using rule 12 (atom -> .) ]
+  ! PLUS            [ reduce using rule 12 (atom -> .) ]
+  ! MINUS           [ reduce using rule 12 (atom -> .) ]
+  ! MULT            [ reduce using rule 12 (atom -> .) ]
+  ! RCURLY          [ reduce using rule 12 (atom -> .) ]
+
+    mathop                         shift and go to state 28
+    atoms                          shift and go to state 34
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 48
+
+    (29) stmt -> atom mathop atom . SEMI
+
+    SEMI            shift and go to state 56
+
+
+state 49
+
+    (18) declaration -> VAR simb EQUALS atoms . SEMI
+
+    SEMI            shift and go to state 57
+
+
+state 50
+
+    (27) stmt -> SIMB LPAREN RPAREN SEMI .
+
+    DIV             reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    PRINT           reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    IF              reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    DEF             reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    SIMB            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    VAR             reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    NUM             reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    TEXT            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    FALSE           reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    TRUE            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    $end            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    PLUS            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    MINUS           reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    MULT            reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+    RCURLY          reduce using rule 27 (stmt -> SIMB LPAREN RPAREN SEMI .)
+
+
+state 51
+
+    (28) exp -> atoms EQ_OP . atoms
+    (3) atoms -> . atom
+    (4) atoms -> . atom atoms
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for TEXT resolved as shift
+  ! shift/reduce conflict for FALSE resolved as shift
+  ! shift/reduce conflict for TRUE resolved as shift
+  ! shift/reduce conflict for SIMB resolved as shift
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    RPAREN          reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+  ! NUM             [ reduce using rule 12 (atom -> .) ]
+  ! TEXT            [ reduce using rule 12 (atom -> .) ]
+  ! FALSE           [ reduce using rule 12 (atom -> .) ]
+  ! TRUE            [ reduce using rule 12 (atom -> .) ]
+  ! SIMB            [ reduce using rule 12 (atom -> .) ]
+
+    atoms                          shift and go to state 58
+    atom                           shift and go to state 18
+    simb                           shift and go to state 19
+
+state 52
+
+    (24) stmt -> IF LPAREN exp RPAREN . LCURLY stmts RCURLY
+    (25) stmt -> IF LPAREN exp RPAREN . LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+
+    LCURLY          shift and go to state 59
+
+
+state 53
+
+    (20) stmt -> simb EQUALS atoms SEMI .
+
+    DIV             reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    PRINT           reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    IF              reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    DEF             reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    SIMB            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    VAR             reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    NUM             reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    TEXT            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    FALSE           reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    TRUE            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    $end            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    PLUS            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    MINUS           reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    MULT            reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+    RCURLY          reduce using rule 20 (stmt -> simb EQUALS atoms SEMI .)
+
+
+state 54
+
+    (30) stmt -> simb EQUALS atom mathop . atom SEMI
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+    (13) simb -> . SIMB
+
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    SEMI            reduce using rule 12 (atom -> .)
+    SIMB            shift and go to state 16
+
+    atom                           shift and go to state 60
+    simb                           shift and go to state 19
+
+state 55
+
+    (26) stmt -> DEF SIMB LPAREN RPAREN . LCURLY stmts RCURLY
+
+    LCURLY          shift and go to state 61
+
+
+state 56
+
+    (29) stmt -> atom mathop atom SEMI .
+
+    DIV             reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    PRINT           reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    IF              reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    DEF             reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    SIMB            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    VAR             reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    NUM             reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    TEXT            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    FALSE           reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    TRUE            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    $end            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    PLUS            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    MINUS           reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    MULT            reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+    RCURLY          reduce using rule 29 (stmt -> atom mathop atom SEMI .)
+
+
+state 57
+
+    (18) declaration -> VAR simb EQUALS atoms SEMI .
+
+    RCURLY          reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    DIV             reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    PRINT           reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    IF              reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    DEF             reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    SIMB            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    VAR             reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    NUM             reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    TEXT            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    FALSE           reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    TRUE            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    PLUS            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    MINUS           reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    MULT            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+    $end            reduce using rule 18 (declaration -> VAR simb EQUALS atoms SEMI .)
+
+
+state 58
+
+    (28) exp -> atoms EQ_OP atoms .
+
+    RPAREN          reduce using rule 28 (exp -> atoms EQ_OP atoms .)
+
+
+state 59
+
+    (24) stmt -> IF LPAREN exp RPAREN LCURLY . stmts RCURLY
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY . stmts RCURLY ELSE LCURLY stmts RCURLY
+    (1) stmts -> . stmt
+    (2) stmts -> . stmts stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    stmts                          shift and go to state 62
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 15
+    simb                           shift and go to state 6
+
+state 60
+
+    (30) stmt -> simb EQUALS atom mathop atom . SEMI
+
+    SEMI            shift and go to state 63
+
+
+state 61
+
+    (26) stmt -> DEF SIMB LPAREN RPAREN LCURLY . stmts RCURLY
+    (1) stmts -> . stmt
+    (2) stmts -> . stmts stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    stmts                          shift and go to state 64
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 15
+    simb                           shift and go to state 6
+
+state 62
+
+    (24) stmt -> IF LPAREN exp RPAREN LCURLY stmts . RCURLY
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts . RCURLY ELSE LCURLY stmts RCURLY
+    (2) stmts -> stmts . stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    RCURLY          shift and go to state 65
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 24
+    simb                           shift and go to state 6
+
+state 63
+
+    (30) stmt -> simb EQUALS atom mathop atom SEMI .
+
+    DIV             reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    PRINT           reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    IF              reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    DEF             reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    SIMB            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    VAR             reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    NUM             reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    TEXT            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    FALSE           reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    TRUE            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    $end            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    PLUS            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    MINUS           reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    MULT            reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+    RCURLY          reduce using rule 30 (stmt -> simb EQUALS atom mathop atom SEMI .)
+
+
+state 64
+
+    (26) stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts . RCURLY
+    (2) stmts -> stmts . stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    RCURLY          shift and go to state 66
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 24
+    simb                           shift and go to state 6
+
+state 65
+
+    (24) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY . ELSE LCURLY stmts RCURLY
+
+    DIV             reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    PRINT           reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    IF              reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    DEF             reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    SIMB            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    VAR             reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    NUM             reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    TEXT            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    FALSE           reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    TRUE            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    $end            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    PLUS            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    MINUS           reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    MULT            reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    RCURLY          reduce using rule 24 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY .)
+    ELSE            shift and go to state 67
+
+
+state 66
+
+    (26) stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .
+
+    DIV             reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    PRINT           reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    IF              reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    DEF             reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    SIMB            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    VAR             reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    NUM             reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    TEXT            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    FALSE           reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    TRUE            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    $end            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    PLUS            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    MINUS           reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    MULT            reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+    RCURLY          reduce using rule 26 (stmt -> DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY .)
+
+
+state 67
+
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE . LCURLY stmts RCURLY
+
+    LCURLY          shift and go to state 68
+
+
+state 68
+
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY . stmts RCURLY
+    (1) stmts -> . stmt
+    (2) stmts -> . stmts stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    stmts                          shift and go to state 69
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 15
+    simb                           shift and go to state 6
+
+state 69
+
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts . RCURLY
+    (2) stmts -> stmts . stmt
+    (6) stmt -> . declaration
+    (20) stmt -> . simb EQUALS atoms SEMI
+    (21) stmt -> . DIV DIV atoms
+    (22) stmt -> . DIV DIV stmts
+    (23) stmt -> . PRINT atoms SEMI
+    (24) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY
+    (25) stmt -> . IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY
+    (26) stmt -> . DEF SIMB LPAREN RPAREN LCURLY stmts RCURLY
+    (27) stmt -> . SIMB LPAREN RPAREN SEMI
+    (29) stmt -> . atom mathop atom SEMI
+    (30) stmt -> . simb EQUALS atom mathop atom SEMI
+    (18) declaration -> . VAR simb EQUALS atoms SEMI
+    (19) declaration -> . VAR simb SEMI
+    (13) simb -> . SIMB
+    (5) atom -> . simb
+    (7) atom -> . NUM
+    (8) atom -> . NUM DOT NUM
+    (9) atom -> . TEXT
+    (10) atom -> . FALSE
+    (11) atom -> . TRUE
+    (12) atom -> .
+
+  ! shift/reduce conflict for DIV resolved as shift
+    RCURLY          shift and go to state 70
+    DIV             shift and go to state 12
+    PRINT           shift and go to state 1
+    IF              shift and go to state 5
+    DEF             shift and go to state 8
+    SIMB            shift and go to state 4
+    VAR             shift and go to state 2
+    NUM             shift and go to state 9
+    TEXT            shift and go to state 3
+    FALSE           shift and go to state 13
+    TRUE            shift and go to state 10
+    PLUS            reduce using rule 12 (atom -> .)
+    MINUS           reduce using rule 12 (atom -> .)
+    MULT            reduce using rule 12 (atom -> .)
+
+  ! DIV             [ reduce using rule 12 (atom -> .) ]
+
+    declaration                    shift and go to state 11
+    atom                           shift and go to state 14
+    stmt                           shift and go to state 24
+    simb                           shift and go to state 6
+
+state 70
+
+    (25) stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .
+
+    DIV             reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    PRINT           reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    IF              reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    DEF             reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    SIMB            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    VAR             reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    NUM             reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    TEXT            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    FALSE           reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    TRUE            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    $end            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    PLUS            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    MINUS           reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    MULT            reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+    RCURLY          reduce using rule 25 (stmt -> IF LPAREN exp RPAREN LCURLY stmts RCURLY ELSE LCURLY stmts RCURLY .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for DIV in state 0 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 1 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 1 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 1 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 1 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 1 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 7 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 18 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 18 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 18 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 18 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 18 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 18 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 18 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 18 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 18 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 22 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 22 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 22 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 22 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 22 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 23 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 23 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 23 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 23 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 23 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 27 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 27 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 27 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 27 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 27 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 27 resolved as shift
+WARNING: shift/reduce conflict for IF in state 27 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 27 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 27 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 27 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 35 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 35 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 35 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 35 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 35 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 41 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 41 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 41 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 41 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 41 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 46 resolved as shift
+WARNING: shift/reduce conflict for PRINT in state 46 resolved as shift
+WARNING: shift/reduce conflict for IF in state 46 resolved as shift
+WARNING: shift/reduce conflict for DEF in state 46 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 46 resolved as shift
+WARNING: shift/reduce conflict for VAR in state 46 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 46 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 46 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 46 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 46 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 46 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 47 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 47 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 47 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 47 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 47 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 47 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 47 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 47 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 47 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 47 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 47 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 47 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 47 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 47 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 47 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 47 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 47 resolved as shift
+WARNING: shift/reduce conflict for NUM in state 51 resolved as shift
+WARNING: shift/reduce conflict for TEXT in state 51 resolved as shift
+WARNING: shift/reduce conflict for FALSE in state 51 resolved as shift
+WARNING: shift/reduce conflict for TRUE in state 51 resolved as shift
+WARNING: shift/reduce conflict for SIMB in state 51 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 59 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 61 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 62 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 64 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 68 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 69 resolved as shift
+WARNING: reduce/reduce conflict in state 18 resolved using rule (atoms -> atom)
+WARNING: rejected rule (atom -> <empty>) in state 18
+WARNING: reduce/reduce conflict in state 41 resolved using rule (atoms -> atom)
+WARNING: rejected rule (atom -> <empty>) in state 41
+WARNING: reduce/reduce conflict in state 46 resolved using rule (atom -> <empty>)
+WARNING: rejected rule (stmt -> DIV DIV stmts) in state 46
+WARNING: reduce/reduce conflict in state 47 resolved using rule (atoms -> atom)
+WARNING: rejected rule (atom -> <empty>) in state 47
