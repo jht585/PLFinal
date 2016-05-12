@@ -1,26 +1,30 @@
-var a = 5;
-print a;
-var c;
-print c; //hello
+print HelloWorld;
+var a;          //variable instantiation allocates storage space in the VariableMap
+print a;        //access variable
+var c = 5;      //instantiate and assign
+print c;
 
+// ifelse uses boolean operator and includes variable reassignment and math operator with assignment
 if (5 == '5') {
-    var a = 10;
+    a = 5 * 5;
     print a;
 } else {
-    var a = 7;
+    a = 5 + 5;
     print a;
 }
 
-a = 5 * 5;
-b = 5 + 5;
-
-print a;
-print b;
-5 - 3;
+5 - 3;       // math operator without assignment sends output to console
 
 def fun() {
     print 'z';
     5 + 5;
 }
 
-//fun();
+var b = (float) a;
+print b;
+var c = (float) 'a';
+print c;
+var d = (float) 5;
+print d;
+
+fun();
