@@ -1,0 +1,86 @@
+Notes for Final Project in Programming Languages - Implementing Swift as Willow (subset of Swift with some additions)
+
+RESERVED WORDS
+ let, var, if, else, while, for, int, float, bool, void, str, class, def, false, true, return, ln, log,i exp, print, round, floor, ceiling, array, set, dictionary, do 
+
+TOKENS (what will be implimented)
+  ==, !=, ..., ..<, +, -, /, *, (, ), {, }, [, ], &&, ||, ^(xor), !(as not log. op. ), <, <=, >, >=, ++(both versions), --(both versions), . (period for floats), type, ?, "" 
+   
+BASIC SHIT
+  (*) means that this functionality does NOT exist in Swift
+  (?) means that this funcitonality might be implemented later
+  
+  DECLARATIONS:
+  - Declare constant: permanent assign with "let"
+  - Declare variable: inperm. assign using "var"
+  - instantiate variable: create variable w/o assigning "var : type"
+  - float: "integer.integer"
+  - int to float casting
+  - float to int casting
+  - declare string
+  - "" acts as string
+ 
+  LOGICAL OPERATORS:
+  - ==
+  - !=
+  - <
+  - <=
+  - >
+  - >=
+  - and log op
+  - or log op
+ *- xor log op
+  - not log op
+  
+  MATH OPERATORS:
+  - binary +
+  - binary *
+  - unary - : takes one number and returns the opposite of the sign of the number
+  - unary / : takes one number and returns its reciprocal
+  - +=
+  - -=
+  - *=
+  - /=
+ *- exp
+ ?- ln 
+ ?- log
+  - ++
+  - --   
+  - floor
+  - ceiling
+ *- round
+
+  STRING OPERATIONS: this needs filling out
+ ?- Indexable strings
+ ?- string concatination 
+ ?- character property of strings
+ ?- concatinating strings
+ ?- string interpolations
+ ? 
+  FLOW CONTROL:
+  - if
+  - else
+  - else if
+  - for (iterable): "for item in list_name"
+  - for (index): "for n in 1...5"
+  - while
+  - do while
+  - do, try, except
+
+  DATA STORAGE:
+  - set creation
+  - set access
+  - dictionary creation
+  - dictionary key access
+ ?- dictionary key list return  
+ ? - optionals
+  - array indexing 
+  - array creation
+ ?- array pop
+ ?- array add
+ ?- assertions 
+
+  OTHER FUNCTIONS: 
+  - Print
+  - comment
+  - return

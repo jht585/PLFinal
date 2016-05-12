@@ -1,0 +1,10 @@
+
+            try:
+                r.append(map[i])
+                print "i is in the map, it is the letter", i
+            except KeyError:
+                try:
+                    r.append(map[i])
+                    print "i is the letter",i
+                except KeyError:
+                    print "i is the letter",i,"but not in the map"
