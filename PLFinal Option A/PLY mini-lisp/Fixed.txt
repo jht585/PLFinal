@@ -1,0 +1,15 @@
+1) fixed some of ? operations
+        'iseq':     op.is_,
+(iseq 5 4)
+        'isequal':  op.eq,
+(isequal (list 1 2 3) (list 1 2 3))
+(isequal (list 1 2 3) (jArray (list 1 2 3)))
+        'islist':   lambda x: isinstance(x,list),
+(islist (list 3 4 5))
+        'isnumber': lambda x: isinstance(x, Number),
+(isnumber (list 1))
+
+2) added negative operator
+        'neg': lambda x: -1 * x,
+(+ 1 (neg 1))
+(abs (neg 5))
