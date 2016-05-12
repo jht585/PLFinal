@@ -194,6 +194,11 @@ def p_math_ass(p):
     if DEBUG: print "handling math assignment expression"
     p[0] = ["MathAssExp",p[3],p[5],p[4],p[1]]
 
+def p_float_int(p):
+    'stmt : VAR simb EQUALS LPAREN FLOAT RPAREN atom SEMI'
+    if DEBUG: print "casting num to float"
+    p[0] = ["FloatCast",p[2],p[7]]
+
 # Error rule for syntax errors
 def p_error(p):
     print "Syntax error!! ",p

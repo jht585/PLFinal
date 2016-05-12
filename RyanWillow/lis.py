@@ -99,6 +99,10 @@ def eval(x):
             VariableMap[x[1]] = x[2]
             x = x[3:]
             if DEBUG: print x
+        elif x[0] == 'Assignment':
+            VariableMap[x[1]] = x[2]
+            x = x[3:]
+            if DEBUG: print x
         elif x[0] == 'VariableInst':
             VariableMap[x[1]] = 0
             x = x[2:]
@@ -158,6 +162,16 @@ def eval(x):
                 eval(FunctionMap[x[1]])
             except KeyError:
                 print "you are trying to call an undefined"
+            x = x[3:]
+        elif x[0] == 'FloatCast':
+            if isinstance(x[2],int):
+                VariableMap[x[1]] = x[2].__float__()
+            elif isinstance(x[2],str):
+                try:
+                    VariableMap[x[1]] = VariableMap[x[2]].__float__()
+                except KeyError:
+                    print "cannot cast str to float"
+                    VariableMap[x[1]] = x[2]
             x = x[3:]
         else:
             print 'Your code may conform to the grammar rules I wrote but eval don\'t know what to do with it'

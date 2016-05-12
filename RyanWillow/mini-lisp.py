@@ -5,10 +5,10 @@ import lis as lis
 def main():
     with open('testfile.c', 'r') as content_file:
         content = content_file.read()
-        print content
         AST = yacc.parse(content)
+        print AST
         if AST != None:
-            result = lis.eval(AST)
-            print (result)
+            lis.eval(AST)
+
 
 main()

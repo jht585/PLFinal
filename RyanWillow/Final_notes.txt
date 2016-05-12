@@ -1,10 +1,12 @@
 Notes for Final Project in Programming Languages - Implementing Swift as Willow (subset of Swift with some additions)
 
 RESERVED WORDS
- let, var, if, else, while, for, int, float, bool, void, str, class, def, false, true, return, ln, log,i exp, print, round, floor, ceiling, array, set, dictionary, do 
+ let, var, if, else, while, for, int, float, bool, void, str, class, def, false, true, return, ln, log,i exp, print,
+ round, floor, ceiling, array, set, dictionary, do
 
 TOKENS (what will be implimented)
-  ==, !=, ..., ..<, +, -, /, *, (, ), {, }, [, ], &&, ||, ^(xor), !(as not log. op. ), <, <=, >, >=, ++(both versions), --(both versions), . (period for floats), type, ?, "" 
+  ==, !=, ..., ..<, +, -, /, *, (, ), {, }, [, ], &&, ||, ^(xor), !(as not log. op. ), <, <=, >, >=,
+  ++(both versions), --(both versions), . (period for floats), type, ?, ""
    
 BASIC SHIT
   (*) means that this functionality does NOT exist in Swift
