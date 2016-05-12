@@ -1,0 +1,14 @@
+CLOSURE:
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); print c1.run("espresso"); print s1.run("espresso")')
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); c1.run("*espresso")("$2.60"); print c1.run("espresso"); print s1.run("espresso")')
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); s1.run("*espresso")("$4.15"); print c1.run("espresso"); print s1.run("espresso")')
+
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); print c1.run("macchiato"); print s1.run("macchiato")')
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); c1.run("*macchiato")("$2.20"); print c1.run("macchiato"); print s1.run("macchiato")')
+(exec 'import Closure; c1 = Closure.coffee(); s1 = Closure.starbucks(); s1.run("*macchiato")("$4.95"); print c1.run("macchiato"); print s1.run("macchiato")')
+
+LIST COMPREHENSION:
+(intersection (list 1 5 3 9 7 8) (list 8 2 6 3 5 0 9))
+(intersection (list 1 1 5 5 5 5 3 3 3 9 8 8 7) (list 2 2 6 3 3 5 5 5 0 0 8 8 8 9))
+(statistics (list 5 36 4 27 1 11 34 95 83 3 2) )
+(statistics '(5 36 4 27 1 11 34 95 83 3 2))

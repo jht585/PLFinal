@@ -51,6 +51,7 @@ def standard_env():
     import math, operator as op
     import streamOp
     import makeObject
+    import listComp
     env = Env()
     env.update(vars(math)) # sin, cos, sqrt, pi, ...
     env.update({
@@ -82,6 +83,10 @@ def standard_env():
         'procedure?': callable,
         'round':   round,
         'symbol?': lambda x: isinstance(x, Symbol),
+        'pi': math.pi,
+        'sort': lambda x: sorted(x),
+        'intersection': lambda x,y: listComp.intersection(x,y),
+        'statistics': lambda x: listComp.statistics(sorted(x)),
     })
     return env
 
